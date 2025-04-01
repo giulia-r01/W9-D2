@@ -1,0 +1,37 @@
+[
+    {
+        "asin": "0345546792",
+        "title": "The Silent Corner: A Novel of Suspense (Jane Hawk)",
+        "img": "https://images-na.ssl-images-amazon.com/images/I/91dDIYze1wL.jpg",
+        "price": 7.92,
+        "category": "horror"
+      },
+      {
+        "asin": "0062059882",
+        "title": "American Gods: The Tenth Anniversary Edition: A Novel",
+        "img": "https://images-na.ssl-images-amazon.com/images/I/519mwdpzlmL.jpg",
+        "price": 14.94,
+        "category": "fantasy"
+      },
+      {
+        "asin": "1578562953",
+        "title": "Edge of Eternity",
+        "img": "https://images-na.ssl-images-amazon.com/images/I/91Ft%2BN5q0sL.jpg",
+        "price": 15.19,
+        "category": "romance"
+      },
+      {
+        "asin": "1101987790",
+        "title": "Silver Silence (Psy-Changeling Trinity)",
+        "img": "https://images-na.ssl-images-amazon.com/images/I/91eGxsWGH7L.jpg",
+        "price": 17.6,
+        "category": "scifi"
+      },
+      {
+        "asin": "0385349947",
+        "title": "Lean In: Women, Work, and the Will to Lead",
+        "img": "https://images-na.ssl-images-amazon.com/images/I/81coZ37EmxL.jpg",
+        "price": 14.3,
+        "category": "history"
+      }
+]
