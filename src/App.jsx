@@ -12,7 +12,7 @@ function App() {
       <header>
         <Navbar />
       </header>
-      <main className="flex-grow-1 bg-black bg-gradient">
+      <main className="flex-grow-1 bg-black bg-gradient pb-5">
         <h1 className="text-gold text-center pt-4">
           <em>The Library</em>
         </h1>

@@ -10,7 +10,7 @@ class AllTheBooks extends Component {
           Scopri la nostra collezione fantasy
         </h3>
         <Row className="justify-content-center g-3">
-          {books.map((fantasy) => {
+          {books.slice(0, 10).map((fantasy) => {
             return (
               <Col
                 xs={12}
