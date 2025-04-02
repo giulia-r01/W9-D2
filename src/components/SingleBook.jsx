@@ -1,12 +1,17 @@
 import { Component } from "react"
 import { Container, Row, Col, Card, Button } from "react-bootstrap"
-import books from "../data-books/fantasy.json"
 
 class SingleBook extends Component {
   state = {
     bookState: {
       selected: false,
     },
+  }
+
+  eventoTest = () => {
+    {
+      this.state.bookState.selected === true && console.log("qualcosa funziona")
+    }
   }
 
   render() {
@@ -21,7 +26,11 @@ class SingleBook extends Component {
             className="justify-content-center d-flex align-items-stretch"
           >
             <Card className="d-flex flex-column w-100">
-              <Card.Img variant="top" src={this.props.img} />
+              <Card.Img
+                variant="top"
+                src={this.props.img}
+                onClick={this.eventoTest}
+              />
               <Card.Body className="d-flex flex-column testColor">
                 <Card.Title className="flex-grow-1">
                   {this.props.title}
