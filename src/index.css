@@ -9,3 +9,7 @@
 .testColorBg {
   background-color: #b18d20aa;
 }
+
+.selectedBook {
+  border: 2px solid red !important;
+}

@@ -7,7 +7,7 @@ import "./index.css"
 import InEvidenza from "./components/InEvidenza"
 import SingleBook from "./components/SingleBook"
 import BookList from "./components/BookList"
-
+import fantasyBooks from "./data-books/fantasy.json"
 function App() {
   return (
     <>
@@ -19,12 +19,8 @@ function App() {
           <em>The Library</em>
         </h1>
         <Welcome />
-        <SingleBook
-          asin="0062059882"
-          title="American Gods: The Tenth Anniversary Edition: A Novel"
-          img="https://images-na.ssl-images-amazon.com/images/I/519mwdpzlmL.jpg"
-        />
-        <BookList />
+        {/*<SingleBook book={fantasyBooks[0]} />*/}
+        <BookList arrayOfBooks={fantasyBooks} />
         {/*<InEvidenza />
         <AllTheBooks />*/}
       </main>

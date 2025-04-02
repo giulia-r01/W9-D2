@@ -1,31 +1,42 @@
-import books from "../data-books/fantasy.json"
-import { Container, Row, Col, Card, Button } from "react-bootstrap"
+import { Container, Form, Row, Col } from "react-bootstrap"
+import SingleBook from "./SingleBook"
+import { Component } from "react"
 
-const BookList = function () {
-  return (
-    <Container className="pt-5">
-      <Row className="justify-content-center g-3">
-        {books.map((props) => {
-          return (
-            <Col
-              xs={12}
-              md={4}
-              lg={3}
-              key={props.asin}
-              className="justify-content-center d-flex align-items-stretch"
-            >
-              <Card className="d-flex flex-column w-100">
-                <Card.Img variant="top" src={props.img} />
-                <Card.Body className="d-flex flex-column testColor">
-                  <Card.Title className="flex-grow-1">{props.title}</Card.Title>
-                  <Button variant="dark">Compralo!</Button>
-                </Card.Body>
-              </Card>
-            </Col>
-          )
-        })}
-      </Row>
-    </Container>
-  )
+class BookList extends Component {
+  state = {
+    search: "", // il valore del campo di ricerca
+  }
+
+  render() {
+    return (
+      <Container className="pt-5">
+        <Row className="justify-content-center my-5">
+          <Col xs={12} md={6}>
+            <Form.Control
+              type="text"
+              placeholder="Cerca qui"
+              value={this.state.search}
+              onChange={(e) => {
+                this.setState({
+                  search: e.target.value,
+                })
+              }}
+            />
+          </Col>
+        </Row>
+        <Row className="justify-content-center g-3">
+          {this.props.arrayOfBooks
+            .filter((libro) =>
+              libro.title
+                .toLowerCase()
+                .includes(this.state.search.toLowerCase())
+            )
+            .map((libro) => {
+              return <SingleBook book={libro} key={libro.asin} />
+            })}
+        </Row>
+      </Container>
+    )
+  }
 }
 export default BookList
