@@ -5,6 +5,8 @@ import Welcome from "./components/Welcome"
 import AllTheBooks from "./components/AllTheBooks"
 import "./index.css"
 import InEvidenza from "./components/InEvidenza"
+import SingleBook from "./components/SingleBook"
+import BookList from "./components/BookList"
 
 function App() {
   return (
@@ -17,8 +19,14 @@ function App() {
           <em>The Library</em>
         </h1>
         <Welcome />
-        <InEvidenza />
-        <AllTheBooks />
+        <SingleBook
+          asin="0062059882"
+          title="American Gods: The Tenth Anniversary Edition: A Novel"
+          img="https://images-na.ssl-images-amazon.com/images/I/519mwdpzlmL.jpg"
+        />
+        <BookList />
+        {/*<InEvidenza />
+        <AllTheBooks />*/}
       </main>
       <MyFooter />
     </>
