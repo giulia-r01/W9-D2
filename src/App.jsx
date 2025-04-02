@@ -19,7 +19,7 @@ function App() {
           <em>The Library</em>
         </h1>
         <Welcome />
-        {/*<SingleBook book={fantasyBooks[0]} />*/}
+        <SingleBook book={fantasyBooks[0]} />
         <BookList arrayOfBooks={fantasyBooks} />
         {/*<InEvidenza />
         <AllTheBooks />*/}
