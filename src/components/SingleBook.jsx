@@ -30,12 +30,12 @@ class SingleBook extends Component {
             }}
           />
           <Card.Body className="d-flex flex-column testColor">
-            <Card.Title>{this.props.book.title}</Card.Title>
-            <CardText className="flex-grow-1">
-              {this.state.selected && (
-                <CommentArea reviewsId={this.props.book.asin} />
-              )}
-            </CardText>
+            <Card.Title className="flex-grow-1">
+              {this.props.book.title}
+            </Card.Title>
+
+            {this.state.selected && <CommentArea asin={this.props.book.asin} />}
+
             <Button variant="dark">Compralo!</Button>
           </Card.Body>
         </Card>

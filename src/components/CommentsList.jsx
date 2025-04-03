@@ -1,28 +1,14 @@
-import { Component } from "react"
 import { ListGroup } from "react-bootstrap"
+import SingleComment from "./SingleComment"
 
-class CommentList extends Component {
-  state = {
-    reviewsId: [
-      {
-        comment: "",
-        rate: "",
-        asin: "",
-      },
-    ],
-  }
-
-  render() {
-    return (
-      <ListGroup>
-        {this.state.reviewsId.map((reviewsObj) => {
-          ;<ListGroup.Item key={reviewsObj.asin}>
-            <div>{reviewsObj.comment}</div>
-          </ListGroup.Item>
-        })}
-      </ListGroup>
-    )
-  }
+const CommentsList = function (props) {
+  return (
+    <ListGroup>
+      {props.reviews.map((recensione) => {
+        return <SingleComment recensione={recensione} key={recensione._id} />
+      })}
+    </ListGroup>
+  )
 }
 
-export default CommentList
+export default CommentsList
