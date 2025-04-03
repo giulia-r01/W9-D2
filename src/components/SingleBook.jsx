@@ -1,5 +1,6 @@
 import { Component } from "react"
-import { Container, Row, Col, Card, Button } from "react-bootstrap"
+import { Container, Row, Col, Card, Button, CardText } from "react-bootstrap"
+import CommentArea from "./CommentArea"
 
 class SingleBook extends Component {
   state = {
@@ -29,9 +30,12 @@ class SingleBook extends Component {
             }}
           />
           <Card.Body className="d-flex flex-column testColor">
-            <Card.Title className="flex-grow-1">
-              {this.props.book.title}
-            </Card.Title>
+            <Card.Title>{this.props.book.title}</Card.Title>
+            <CardText className="flex-grow-1">
+              {this.state.selected && (
+                <CommentArea reviewsId={this.props.book.asin} />
+              )}
+            </CardText>
             <Button variant="dark">Compralo!</Button>
           </Card.Body>
         </Card>
