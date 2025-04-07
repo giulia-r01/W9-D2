@@ -1,5 +1,5 @@
 import { Component } from "react"
-import { Container, Row, Col, Card, Button, CardText } from "react-bootstrap"
+import { Col, Card, Button } from "react-bootstrap"
 import CommentArea from "./CommentArea"
 
 class SingleBook extends Component {
@@ -17,16 +17,22 @@ class SingleBook extends Component {
       >
         <Card
           className={`d-flex flex-column w-100 ${
-            this.state.selected ? "selectedBook" : ""
+            this.props.asinLibroSelezionato === this.props.book.asin
+              ? "selectedBook"
+              : ""
           }`}
         >
           <Card.Img
             variant="top"
             src={this.props.book.img}
             onClick={() => {
-              this.setState({
-                selected: !this.state.selected,
-              })
+              // this.setState({
+              //   selected: !this.state.selected,
+              //  })
+
+              // devo utilizzare l'asin per cambiare lo stato di mio padre, BookList
+              //invoco
+              this.props.cambiaAsin(this.props.book.asin) // invoca changeAsin in BookList
             }}
           />
           <Card.Body className="d-flex flex-column testColor">
@@ -34,7 +40,7 @@ class SingleBook extends Component {
               {this.props.book.title}
             </Card.Title>
 
-            {this.state.selected && <CommentArea asin={this.props.book.asin} />}
+            {/*this.state.selected && <CommentArea asin={this.props.book.asin} />*/}
 
             <Button variant="dark">Compralo!</Button>
           </Card.Body>

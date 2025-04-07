@@ -34,8 +34,18 @@ class CommentArea extends Component {
       })
   }
 
-  componentDidMount = () => {
-    this.getReviews()
+  //componentDidMount = () => {
+  //  this.getReviews()
+  // }
+
+  // dovremmo recuperare i commenti del nuovo libro cliccato non appena lo selezioniamo
+  //quando clicchiamo su un singleBook settiamo lo stato di booklist con l'asin del libro cliccato
+  // e commentArea riceve una nuova prop
+
+  componentDidUpdate = (prevProps) => {
+    if (prevProps.asin !== this.props.asin) {
+      this.getReviews()
+    }
   }
 
   render() {
