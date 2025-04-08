@@ -1,23 +1,36 @@
-import { Component } from "react"
+import { useState, useEffect } from "react"
 import { Button, Form } from "react-bootstrap"
 
 const URL = "https://striveschool-api.herokuapp.com/api/comments/"
 
-class AddComment extends Component {
-  state = {
-    review: {
-      comment: "",
-      rate: "3",
-      elementId: this.props.asin,
-    },
-  }
+const AddComment = function (props) {
+  // state = {
+  //   review: {
+  //     comment: "",
+  //     rate: "3",
+  //     elementId: this.props.asin,
+  //   },
+  // }
 
-  sendReview = (e) => {
+  const [review, setReview] = useState({
+    comment: "",
+    rate: "3",
+    elementId: props.asin,
+  })
+
+  useEffect(() => {
+    setReview((prevReview) => ({
+      ...prevReview,
+      elementId: props.asin,
+    }))
+  }, [props.asin])
+
+  const sendReview = (e) => {
     e.preventDefault()
     // facciamo la post, inviando come body this.state.review
     fetch(URL, {
       method: "POST",
-      body: JSON.stringify(this.state.review),
+      body: JSON.stringify(review),
       headers: {
         "Content-Type": "application/json",
         authorization:
@@ -27,6 +40,7 @@ class AddComment extends Component {
       .then((response) => {
         if (response.ok) {
           alert("COMMENTO INVIATO!")
+          console.log("ASIN ricevuto:", props.asin)
         } else {
           throw new Error("commento NON inviato")
         }
@@ -36,52 +50,59 @@ class AddComment extends Component {
       })
   }
 
-  render() {
-    return (
-      <Form onSubmit={this.sendReview}>
-        <Form.Group className="mb-3">
-          <Form.Label>Testo</Form.Label>
-          <Form.Control
-            type="text"
-            placeholder="Bello sto libbbro!"
-            value={this.state.review.comment}
-            required
-            onChange={(e) => {
-              this.setState({
-                review: {
-                  ...this.state.review,
-                  comment: e.target.value,
-                },
-              })
-            }}
-          />
-        </Form.Group>
-        <Form.Group className="mb-3">
-          <Form.Label>Voto</Form.Label>
-          <Form.Select
-            value={this.state.review.rate}
-            onChange={(e) => {
-              this.setState({
-                review: {
-                  ...this.state.review,
-                  rate: e.target.value,
-                },
-              })
-            }}
-          >
-            <option>1</option>
-            <option>2</option>
-            <option>3</option>
-            <option>4</option>
-            <option>5</option>
-          </Form.Select>
-        </Form.Group>
-        <Button variant="success" type="submit">
-          INVIA
-        </Button>
-      </Form>
-    )
-  }
+  return (
+    <Form onSubmit={sendReview}>
+      <Form.Group className="mb-3">
+        <Form.Label>Testo</Form.Label>
+        <Form.Control
+          type="text"
+          placeholder="Bello sto libbbro!"
+          value={review.comment}
+          required
+          onChange={(e) => {
+            //this.setState({
+            //  review: {
+            //    ...this.state.review,
+            //    comment: e.target.value,
+            //  },
+            //})
+            setReview({
+              ...review,
+              comment: e.target.value,
+            })
+          }}
+        />
+      </Form.Group>
+      <Form.Group className="mb-3">
+        <Form.Label>Voto</Form.Label>
+        <Form.Select
+          value={review.rate}
+          onChange={(e) => {
+            //this.setState({
+            //  review: {
+            //    ...this.state.review,
+            //    rate: e.target.value,
+            //  },
+            //})
+
+            setReview({
+              ...review,
+              rate: e.target.value,
+            })
+          }}
+        >
+          <option>1</option>
+          <option>2</option>
+          <option>3</option>
+          <option>4</option>
+          <option>5</option>
+        </Form.Select>
+      </Form.Group>
+      <Button variant="success" type="submit">
+        INVIA
+      </Button>
+    </Form>
+  )
 }
 
 export default AddComment

@@ -1,17 +1,19 @@
-import { Component } from "react"
+import { useState, useEffect } from "react"
 import AddComment from "./AddComment"
 import CommentsList from "./CommentsList"
 const URL = `https://striveschool-api.herokuapp.com/api/comments/`
 const auth =
   "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2N2RkMWU5YTM4MzRiZjAwMTUwMDA2ZjEiLCJpYXQiOjE3NDM2ODA5NjUsImV4cCI6MTc0NDg5MDU2NX0.tnXW5S11pIK7c0Sb9UKGk6u8ZLI2UUN2wMCbXQT7K5o"
 
-class CommentArea extends Component {
-  state = {
-    reviews: [],
-  }
+const CommentArea = function (props) {
+  //state = {
+  //  reviews: [],
+  //}
 
-  getReviews = () => {
-    fetch(URL + this.props.asin, {
+  const [reviews, setReviews] = useState([])
+
+  const getReviews = () => {
+    fetch(URL + props.asin, {
       headers: {
         authorization: auth,
       },
@@ -25,10 +27,14 @@ class CommentArea extends Component {
       })
       .then((data) => {
         console.log("tutto ok", data)
-        this.setState({
-          reviews: data,
-        })
+
+        //  this.setState({
+        //    reviews: data,
+        // })
+
+        setReviews(data)
       })
+
       .catch((err) => {
         console.log("errore", err)
       })
@@ -42,20 +48,24 @@ class CommentArea extends Component {
   //quando clicchiamo su un singleBook settiamo lo stato di booklist con l'asin del libro cliccato
   // e commentArea riceve una nuova prop
 
-  componentDidUpdate = (prevProps) => {
-    if (prevProps.asin !== this.props.asin) {
-      this.getReviews()
-    }
-  }
+  //componentDidUpdate = (prevProps) => {
+  //  if (prevProps.asin !== this.props.asin) {
+  //    this.getReviews()
+  //  }
+  //}
 
-  render() {
-    return (
-      <div>
-        <AddComment asin={this.props.asin} />
-        <CommentsList reviews={this.state.reviews} />
-      </div>
-    )
-  }
+  useEffect(() => {
+    if (props.asin) {
+      getReviews()
+    }
+  }, [props.asin])
+
+  return (
+    <div>
+      <AddComment asin={props.asin} />
+      <CommentsList reviews={reviews} />
+    </div>
+  )
 }
 
 export default CommentArea
