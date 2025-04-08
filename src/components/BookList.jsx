@@ -45,6 +45,7 @@ const BookList = function (props) {
               .filter((libro) =>
                 libro.title.toLowerCase().includes(search.toLowerCase())
               )
+              .slice(0, 8)
               .map((libro) => {
                 return (
                   <SingleBook
