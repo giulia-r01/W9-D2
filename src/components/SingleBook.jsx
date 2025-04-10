@@ -17,6 +17,7 @@ const SingleBook = function (props) {
       className="justify-content-center d-flex align-items-stretch"
     >
       <Card
+        data-testid="card-test"
         className={`d-flex flex-column w-100 ${
           props.asinLibroSelezionato === props.book.asin ? "selectedBook" : ""
         }`}
