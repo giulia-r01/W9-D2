@@ -40,7 +40,7 @@ const BookList = function (props) {
       </Row>
       <Row className="justify-content-center g-3">
         <Col xs={12} md={8}>
-          <Row className="g-2">
+          <Row className="g-2" data-testid="eight-cards">
             {props.arrayOfBooks
               .filter((libro) =>
                 libro.title.toLowerCase().includes(search.toLowerCase())
